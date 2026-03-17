@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LojaMVVMApp">
         <activity
+            android:name=".ui.carts.CartsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.products.ProductDetailActivity"
             android:exported="false" />
         <activity

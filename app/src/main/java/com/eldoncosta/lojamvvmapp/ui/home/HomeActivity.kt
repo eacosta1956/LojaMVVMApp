@@ -3,22 +3,26 @@ package com.eldoncosta.lojamvvmapp.ui.home
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.eldoncosta.lojamvvmapp.R
+import com.eldoncosta.lojamvvmapp.databinding.ActivityHomeBinding
 import com.eldoncosta.lojamvvmapp.ui.products.ProductsActivity
-import com.google.android.material.card.MaterialCardView
+import com.eldoncosta.lojamvvmapp.ui.carts.CartsActivity
 
 class HomeActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityHomeBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
 
-        val cardProducts = findViewById<MaterialCardView>(R.id.cardProducts)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        cardProducts.setOnClickListener {
+        binding.cardProducts.setOnClickListener {
+            startActivity(Intent(this, ProductsActivity::class.java))
+        }
 
-            val intent = Intent(this, ProductsActivity::class.java)
-            startActivity(intent)
-
+        binding.cardCarts.setOnClickListener {
+            startActivity(Intent(this, CartsActivity::class.java))
         }
     }
 }
