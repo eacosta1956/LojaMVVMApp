@@ -1,15 +1,31 @@
 package com.eldoncosta.lojamvvmapp.ui.products
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.eldoncosta.lojamvvmapp.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.eldoncosta.lojamvvmapp.databinding.ActivityProductsBinding
+import com.eldoncosta.lojamvvmapp.viewmodel.ProductViewModel
 
 class ProductsActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityProductsBinding
+
+    private val viewModel: ProductViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_products)
+
+        binding = ActivityProductsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.recyclerProducts.layoutManager = LinearLayoutManager(this)
+
+        viewModel.products.observe(this) { products ->
+
+            val adapter = ProductAdapter(products)
+            binding.recyclerProducts.adapter = adapter
+
+        }
     }
 }

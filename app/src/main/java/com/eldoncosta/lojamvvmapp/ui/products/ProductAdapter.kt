@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eldoncosta.lojamvvmapp.data.model.Product
 import com.eldoncosta.lojamvvmapp.databinding.ItemProductBinding
+import com.bumptech.glide.Glide
 
 class ProductAdapter(
     private val products: List<Product>
@@ -30,6 +31,10 @@ class ProductAdapter(
 
         holder.binding.textTitle.text = product.title
         holder.binding.textPrice.text = "$${product.price}"
+
+        Glide.with(holder.itemView.context)
+            .load(product.thumbnail)
+            .into(holder.binding.imageProduct)
     }
 
     override fun getItemCount(): Int {
