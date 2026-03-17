@@ -9,4 +9,7 @@ class ProductRepository {
         return RetrofitClient.apiService.getProducts().products
     }
 
+    suspend fun getProductById(id: Int): Product {
+        return RetrofitClient.apiService.getProductById(id)
+    }
 }

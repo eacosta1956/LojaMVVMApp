@@ -1,5 +1,6 @@
 package com.eldoncosta.lojamvvmapp.ui.products
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -35,6 +36,14 @@ class ProductAdapter(
         Glide.with(holder.itemView.context)
             .load(product.thumbnail)
             .into(holder.binding.imageProduct)
+
+        holder.itemView.setOnClickListener {
+
+            val intent = Intent(holder.itemView.context, ProductDetailActivity::class.java)
+            intent.putExtra("product_id", product.id)
+
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
